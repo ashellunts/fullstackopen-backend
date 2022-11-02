@@ -6,7 +6,7 @@
     "start": "node index.js",
     "test": "find . -name '*.js' -not -path '*node_modules*' -not -path '*build*' | entr -c jest",
     "dev": "nodemon index.js",
-    "build:ui": "rm -rf build && cd ../f/part2/phonebook && npm run build && cp -r build ../../../b",
+    "build:ui": "rm -rf build && cd ../frontend/part2/phonebook && npm run build && cp -r build ../../../backend",
     "deploy": "fly deploy"
   },
   "devDependencies": {
