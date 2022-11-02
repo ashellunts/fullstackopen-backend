@@ -19,11 +19,11 @@ test('get person', async () => {
 });
 
 test('update person', async () => {
-    const person = { name: "Matt", number: "994" }
+    const person = { name: "Matt", number: "99-123456" }
     const response = await axios.put('http://localhost:3001/api/persons/63428d4af2b5fd2657caa774', person)
     expect(response.status).toBe(200)
     expect(response.data).toEqual(
-        { id: "63428d4af2b5fd2657caa774", name: "Matt", number: "994" }
+        { id: "63428d4af2b5fd2657caa774", name: "Matt", number: "99-123456" }
     )
 });
 
@@ -103,8 +103,19 @@ test('create no number', async () => {
     }
 });
 
+test('create invalid number, valid form is xx-xxxxxx', async () => {
+    expect.assertions(2);
+    try {
+        const no_number = { name: "Alex", number: "12345678" }
+        await axios.post('http://localhost:3001/api/persons', no_number)
+    } catch (e) {
+        expect(e.response.status).toBe(400)
+        expect(e.response.data.error).toContain('is not a valid phone number!');
+    }
+});
+
 test('create happy path', async () => {
-    const person = { name: "Matt", number: "123" }
+    const person = { name: "Matt", number: "12-123456" }
     const response = await axios.post('http://localhost:3001/api/persons', person)
     expect(response.status).toBe(200)
 

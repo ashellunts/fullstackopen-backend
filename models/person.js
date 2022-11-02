@@ -1,6 +1,7 @@
 require('dotenv').config()
 
 const mongoose = require('mongoose')
+const PhoneNumberValidator = require('./person_validation')
 
 const url = process.env.MONGODB_URI
 
@@ -23,7 +24,13 @@ const personSchema = new mongoose.Schema({
     number: {
         type: String,
         required: true,
-        minLength: 2
+        minLength: 8,
+        validate: {
+            validator: function (v) {
+                return PhoneNumberValidator.valid(v)
+            },
+            message: props => `${props.value} is not a valid phone number!`
+        },
     },
 })
 
