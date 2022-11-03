@@ -47,7 +47,7 @@ app.get('/api/persons', (request, response) => {
 
 app.get('/api/info', (request, response) => {
     Person.find({}).then(persons => {
-        result = `Phonebook has info for ${persons.length} people`
+        let result = `Phonebook has info for ${persons.length} people`
         result += "<br>"
         result += new Date()
         response.status(200).send(result)
@@ -69,8 +69,8 @@ app.get('/api/persons/:id', (request, response, next) => {
 
 app.delete('/api/persons/:id', (request, response, next) => {
     const person_id = request.params.id
-    Person.findByIdAndRemove(person_id).then(result => {
-        response.status(204).end();
+    Person.findByIdAndRemove(person_id).then(() => {
+        response.status(204).end()
     }).catch(error => {
         next(error)
     })

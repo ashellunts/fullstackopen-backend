@@ -1,0 +1,19 @@
+{
+    "env": {
+        "node": true,
+        "commonjs": true,
+        "jest/globals": true
+    },
+    "extends": "eslint:recommended",
+    "overrides": [],
+    "parserOptions": {
+        "ecmaVersion": "latest"
+    },
+    "rules": {
+        "eqeqeq": "error",
+        "no-trailing-spaces": "error"
+    },
+    "plugins": [
+        "jest"
+    ]
+}

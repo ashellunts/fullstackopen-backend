@@ -42,7 +42,7 @@ test('update person empty number', async () => {
 test('update person invalid id', async () => {
     try {
         const person = { name: "Matt", number: "999" }
-        const response = await axios.put('http://localhost:3001/api/persons/xxx', person)
+        await axios.put('http://localhost:3001/api/persons/xxx', person)
     } catch (error) {
         expect(error.response.status).toBe(400)
     }
