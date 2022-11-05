@@ -6,7 +6,7 @@ test('get all', async () => {
 });
 
 test('get info', async () => {
-    const response = await axios.get('http://localhost:3001/api/info')
+    const response = await axios.get('http://localhost:3001/api/persons/info')
     expect(response.status).toBe(200)
     expect(response.data).toContain("Phonebook has info for")
 });
